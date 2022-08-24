@@ -3,7 +3,7 @@
 // main function
 function myFunction(printStatement, myAnotherFuctionRef) {
   // invoking another method implementation passed as a parameter here  
-  myAnotherFunction(printStatement);
+  myAnotherFuctionRef(printStatement);
 }
 
 // this is a function which will be passed as a parameter
