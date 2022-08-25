@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Storage Assignment</title>
+
+    <script type="application/javascript" defer>
+        /**
+        *Problem Statement: Create a simple application which displays two counts:Local Score, Session Score and a button to increment these counts. 
+        *Local score must persist in Local Storage and Session score must persist in Session Storage and must reset on closing the session.
+        *
+        **/
+
+        // initializing the respective fields on loading the page
+        function init() {
+            document.getElementById('scount').value = sessionStorage.getItem('session_count') == null ? 0 : sessionStorage.getItem('session_count');
+            document.getElementById('lcount').value = localStorage.getItem('local_count');
+        }
+
+        // using a generic function to increment both Session and Local counters.
+        function incrementCount(elementId) {
+
+            let oldCount;
+
+            // isNaN is used to avoid any unprecedented behavior of the counters
+            if (elementId === 'scount') {
+                oldCount = isNaN(parseInt(sessionStorage.getItem('session_count'), 10)) ? 0 : parseInt(sessionStorage.getItem('session_count'), 10);
+            } else {
+                oldCount = isNaN(parseInt(localStorage.getItem('local_count'), 10)) ? 0 : parseInt(localStorage.getItem('local_count'), 10);
+            }
+
+            let newCount = oldCount + 1; // isNaN(sessionStorage.getItem('session_count') ? 0 : sessionStorage.getItem('session_count'))
+
+            elementId === 'scount' ? sessionStorage.setItem('session_count', newCount) : localStorage.getItem('local_count', newCount);
+
+            document.getElementById(elementId).value = newCount;
+        }
+    </script>
+</head>
+
+<body onload="init()">
+
+    <h1> Session Count: <input id="scount" value="0"></input></h1>
+    <br>
+    <button type="button" onclick="incrementCount('scount')">Increment Session Count</button>
+    <br>
+
+    <h1> Local Count: <input id="lcount" value="0"></input></h1>
+    <br>
+    <button type="button" onclick="incrementCount('lcount')">Increment Local Count</button>
+</body>
+
+</html>
