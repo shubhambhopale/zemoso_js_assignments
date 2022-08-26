@@ -33,7 +33,7 @@
 
             let newCount = oldCount + 1; // isNaN(sessionStorage.getItem('session_count') ? 0 : sessionStorage.getItem('session_count'))
 
-            elementId === 'scount' ? sessionStorage.setItem('session_count', newCount) : localStorage.getItem('local_count', newCount);
+            elementId === 'scount' ? sessionStorage.setItem('session_count', newCount) : localStorage.setItem('local_count', newCount);
 
             document.getElementById(elementId).value = newCount;
         }
